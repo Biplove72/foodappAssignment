@@ -25,17 +25,21 @@ class _BottomNavigationState extends State<BottomNavigation> {
   ];
   int selectedIndex=0;
 
+
   void ontapped(int index){
     setState(() {
       selectedIndex=index;
+
     });
 
   }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+
       body: _widgetOptions.elementAt(selectedIndex),
       bottomNavigationBar:BottomNavigationBar(
+
           items: const [
             BottomNavigationBarItem(
               icon:  Icon(Icons.home,),
@@ -50,7 +54,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.person,
-                color: Colors.black12,
+
               ),
               label: 'Account',
             ),
