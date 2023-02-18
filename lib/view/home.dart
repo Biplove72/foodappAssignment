@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:restro_app/model.dart';
+import 'package:restro_app/view/details.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,7 +35,9 @@ class _HomePageState extends State<HomePage> {
           price: 100),
     ];
     return Scaffold(
+
       appBar: AppBar(
+
         backgroundColor: Colors.white,
 
         toolbarHeight:
@@ -122,8 +125,9 @@ class _HomePageState extends State<HomePage> {
           height:height*0.085,
         ),
         SizedBox(
-          height: height * 0.35,
+          height: height * 0.28,
           child: ListView.builder(
+            shrinkWrap: true,
             scrollDirection: Axis.vertical,
             itemCount: foods.length,
             itemBuilder: (context, index) {
@@ -144,41 +148,46 @@ class Fooditems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(children: [
-        Stack(
-          children: [
-            Container(
-              margin: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 10),
-              width: double.infinity,
-              height: 100,
-              color: Colors.red,
-              padding: EdgeInsets.all(15.0),
-              alignment: Alignment.topRight,
-            ),
-            Center(
-                child: Image.asset(
-              foods.image,
-              width: 200,
-              height: 120,
-            )), //Text
-            //Con
-          ],
-        ),
-        Column(children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return InkWell(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailScreen(foods),));
+      },
+      child: Card(
+        child: Column(children: [
+          Stack(
             children: [
-              Text(foods.name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
-              Text(foods.price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
-
+              Container(
+                margin: EdgeInsets.only(right: 5, left: 5, top: 5, bottom: 10),
+                width: double.infinity,
+                height: 100,
+                color: Colors.red,
+                padding: EdgeInsets.all(15.0),
+                alignment: Alignment.topRight,
+              ),
+              Center(
+                  child: Image.asset(
+                foods.image,
+                width: 200,
+                height: 120,
+              )), //Text
+              //Con
             ],
           ),
-          Text(
-            foods.category,textAlign: TextAlign.end)
-    ]
-        )
-      ]),
+          Column(children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(foods.name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),
+                Text(foods.price.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)
+
+              ],
+            ),
+            Text(
+              foods.category,textAlign: TextAlign.end)
+      ]
+          )
+        ]),
+      ),
     );
   }
 }
